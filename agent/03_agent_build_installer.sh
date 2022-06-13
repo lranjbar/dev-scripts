@@ -5,7 +5,7 @@ DEVSCRIPTS_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 LOGDIR=${DEVSCRIPTS_SCRIPT_DIR}/logs
 source $DEVSCRIPTS_SCRIPT_DIR/logging.sh
-source $SCRIDEVSCRIPTS_SCRIPT_DIRPTDIR/common.sh
+source $DEVSCRIPTS_SCRIPT_DIR/common.sh
 source $DEVSCRIPTS_SCRIPT_DIR/agent/common.sh
 
 # Use the development branch for building the openshift installer.

@@ -171,8 +171,8 @@ function setNetworkingVars() {
 
 function generate_cluster_manifests() {
 
-  MANIFESTS_PATH="${OCP_DIR}/cluster-manifests"
-  MIRROR_PATH="${OCP_DIR}/mirror"
+  export MANIFESTS_PATH="${OCP_DIR}/cluster-manifests"
+  export MIRROR_PATH="${OCP_DIR}/mirror"
 
   # Fetch current OpenShift version from the release payload
   VERSION="$(openshift_version ${OCP_DIR})"
@@ -274,7 +274,7 @@ EOF
 
 if [[ ! -z "${MIRROR_IMAGES}" ]] || [[ ! -z "${OC_MIRROR}" ]]; then
    # Set up registries.conf and ca-bundle.crt for mirroring
-  ansible-playbook "${SCRIPTDIR}/agent/assets/agent-create-registries-conf-playbook.yaml"
+  ansible-playbook "${SCRIPTDIR}/agent/assets/ztp/registries-conf-playbook.yaml"
 
    # Store the certs for registry
    if [[ "${REGISTRY_BACKEND}" = "podman" ]]; then
@@ -504,7 +504,7 @@ if [ ! -z "${MIRROR_IMAGES}" ]; then
 
 fi
 
-if [ "${OC_MIRROR}" == "true " ] && [  "${MIRROR_MCE}" == "true " ]; then
+if [ "${MIRROR_IMAGES}" == "true " ] && [  "${OC_MIRROR}" == "true " ] && [  "${AGENT_DEPLOY_MCE}" == "true " ]; then
   oc_mirror_mce
 fi
 
